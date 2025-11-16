@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeGuard - Profile Setup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .profile-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 45px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .app-name {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .welcome-text {
+            color: #2d3748;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .username-display {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+
+        .info-section {
+            background: linear-gradient(135deg, #f6f8fb 0%, #e9eef5 100%);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .info-title {
+            color: #2d3748;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .form-section {
+            margin-top: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .form-description {
+            color: #718096;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .textarea-wrapper {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            color: #2d3748;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #a0aec0;
+        }
+
+        .char-counter {
+            text-align: right;
+            color: #a0aec0;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+
+        .vibe-examples {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .vibe-examples h4 {
+            color: #4a5568;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .example-item {
+            padding: 10px;
+            background: #f7fafc;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #4a5568;
+            border-left: 3px solid #667eea;
+        }
+
+        .example-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-icon {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 40px 30px;
+            }
+
+            .app-name {
+                font-size: 1.8rem;
+            }
+
+            .logo {
+                font-size: 3rem;
+            }
+
+            .welcome-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="header">
+            <div class="logo">🛡️</div>
+            <h1 class="app-name">VibeGuard</h1>
+            <h2 class="welcome-text">Welcome, <span class="username-display">{{ username }}</span>!</h2>
+            <p class="subtitle">Let's set up your profile to personalize your experience</p>
+        </div>
+
+        <div class="info-section">
+            <div class="info-title">
+                <span>💡</span>
+                <span>What is your vibe?</span>
+            </div>
+            <div class="info-content">
+                Tell us about your comfort preferences and social needs. This helps VibeGuard provide better guidance tailored specifically for you in various social situations.
+            </div>
+        </div>
+
+        <form method="POST" action="/profile">
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="vibe">Your Vibe Profile</label>
+                    <p class="form-description">
+                        Describe your social comfort zone, sensory preferences, communication style, or any specific needs that help you feel comfortable in social settings.
+                    </p>
+                    <div class="textarea-wrapper">
+                        <textarea 
+                            id="vibe" 
+                            name="vibe" 
+                            class="form-control" 
+                            placeholder="E.g., I prefer calm environments with minimal noise. I appreciate direct communication and need personal space. Bright lights can be overwhelming for me..."
+                            required
+                            maxlength="500"
+                            oninput="updateCharCount(this)"
+                        ></textarea>
+                    </div>
+                    <div class="char-counter">
+                        <span id="charCount">0</span> / 500 characters
+                    </div>
+                </div>
+
+                <div class="vibe-examples">
+                    <h4>💭 Example preferences to include:</h4>
+                    <div class="example-item">
+                        🔊 Noise sensitivity (prefer quiet vs. energetic environments)
+                    </div>
+                    <div class="example-item">
+                        👥 Social comfort (small groups vs. large gatherings)
+                    </div>
+                    <div class="example-item">
+                        💬 Communication style (direct, need processing time, etc.)
+                    </div>
+                    <div class="example-item">
+                        🌟 Sensory preferences (lighting, textures, personal space)
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span><span class="btn-icon">✨</span>Save Profile & Continue</span>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function updateCharCount(textarea) {
+            const charCount = document.getElementById('charCount');
+            charCount.textContent = textarea.value.length;
+            
+            // Change color when approaching limit
+            if (textarea.value.length > 450) {
+                charCount.style.color = '#e53e3e';
+            } else if (textarea.value.length > 400) {
+                charCount.style.color = '#ed8936';
+            } else {
+                charCount.style.color = '#a0aec0';
+            }
+        }
+    </script>
+</body>
+</html>
